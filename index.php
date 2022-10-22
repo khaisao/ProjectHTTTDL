@@ -189,6 +189,8 @@
                 map.removeLayer(layer);
                 map.removeLayer(vectorLayer);
             }
+            console.log(" Vao ham nay");
+
         }
         function myFunction() {
             var popup = document.getElementById("popup");
@@ -215,11 +217,11 @@
         }
         // ATM
         function oncheckatm() {
-            handleOnCheck('ATM_Banking', layer_atm);
+            handleOnCheck('atm', layer_atm);
         }
         // CHợ 
         function oncheckmarkets() {
-            handleOnCheck('farmers_market_locations', layer_markets);
+            handleOnCheck('markets', layer_markets);
         }
 
 
