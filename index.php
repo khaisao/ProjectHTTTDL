@@ -111,7 +111,6 @@
                 <input onclick="oncheckarg()" type="checkbox" id="arg" name="layer" value="arg"> Washington DC <br />
                 
                 <button id="btnRest"> Làm mới </button>
-                <a href="http://localhost/BTL_HTTT_DiaLy/BTL_HTTT_DiaLy_2/btl1.php"><button id="btnRest"> Công cụ đo </button></a>
 
             </td>
         </tr>
