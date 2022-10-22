@@ -255,7 +255,7 @@
                         'FORMAT': format,
                         'VERSION': '1.1.1',
                         STYLES: '',
-                        LAYERS: 'roadway',
+                        LAYERS: 'roadway_functional_classification',
                     }
                 })
 
@@ -311,7 +311,7 @@
                         'FORMAT': format,
                         'VERSION': '1.1.1',
                         STYLES: '',
-                        LAYERS: 'ATM_Banking',
+                        LAYERS: 'atm_banking',
                     }
                 })
 
