@@ -446,7 +446,7 @@ function initialize_map() {
       anchor: [0.5, 0.5],
       anchorXUnits: "fraction",
       anchorYUnits: "fraction",
-      src: "http://localhost:80/Nhom08-HTTTDL-61HT//Nhom08-HTTTDL-61HT/BTL_HTTT_DiaLy/Yellow_dot.svg"
+      src: "http://localhost/pj/Yellow_dot.svg"
     })
   });
   vectorLayer = new ol.layer.Vector({
@@ -513,9 +513,9 @@ function initialize_map() {
   }
 
   function displayObjInfo(result, coordinate) {
+    console.log(result);
     show(document.querySelectorAll('.infomation'))
-    $("#popup-content").html(result);
-    overlay.setPosition(coordinate);
+    $("#infomation_box").html(result);
 
   }
 

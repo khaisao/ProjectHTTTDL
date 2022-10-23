@@ -18,24 +18,17 @@
 <body onload="initialize_map();">
 
     <table>
-
         <tr>
-
             <td>
-
                 <div id="map" class="map"></div>
-                <div id="map" style="width: 50vw; height: 50vh;"></div>
                 <div id="popup" class="ol-popup">
                     <a href="#" id="popup-closer" class="ol-popup-closer"></a>
                     <div id="popup-content"></div>
                 </div>
                 <div class="infomation">
-                    <div class="infomation_box">
-                        Đây là thông tin
-                    </div>
-                    <i class="fa fa-cloud close_infomation" id = "close_infomation"></i>
+                    <div class="infomation_box" id="infomation_box"></div>
+                    <i class="fa fa-cloud close_infomation" id="close_infomation"></i>
 
-                    
                 </div>
             </td>
             <td>
