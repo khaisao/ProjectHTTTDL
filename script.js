@@ -513,6 +513,7 @@ function initialize_map() {
   }
 
   function displayObjInfo(result, coordinate) {
+    show(document.querySelectorAll('.infomation'))
     $("#popup-content").html(result);
     overlay.setPosition(coordinate);
 
@@ -796,3 +797,19 @@ areaMeasure.onclick = btnClick;
 let clearGraphics = document.getElementById('btn3');
 clearGraphics.onclick = clear;
 
+function hide (elements) {
+  elements = elements.length ? elements : [elements];
+  for (var index = 0; index < elements.length; index++) {
+    elements[index].style.display = 'none';
+  }
+}
+
+function show (elements) {
+  elements = elements.length ? elements : [elements];
+  for (var index = 0; index < elements.length; index++) {
+    elements[index].style.display = 'block';
+  }
+}
+
+document.getElementById("close_infomation").onclick = function() { hide(document.querySelectorAll('.infomation'));
+}
