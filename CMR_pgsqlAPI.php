@@ -62,7 +62,7 @@ if (isset($_POST['name'])) {
 function initDB()
 {
     // Kết nối CSDL
-    $paPDO = new PDO('pgsql:host=localhost;dbname=demo;port=5432', 'postgres', 'Khaiden666*');
+    $paPDO = new PDO('pgsql:host=localhost;dbname=demo;port=5432', 'postgres', 'thao3456');
     return $paPDO;
 }
 function query($paPDO, $paSQLStr)

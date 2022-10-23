@@ -12,6 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
     <script src="dependencies/ol.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
 
 </head>
 
@@ -27,8 +29,8 @@
                 </div>
                 <div class="infomation">
                     <div class="infomation_box" id="infomation_box"></div>
-                    <i class="fa fa-cloud close_infomation" id="close_infomation"></i>
-
+                    <i class="fas fa-times close_infomation" id="close_infomation"></i>
+                    
                 </div>
             </td>
             <td>
@@ -48,9 +50,10 @@
 
                 <button id="btnRest"> Làm mới </button>
                 <div class="toolbar">
-                    <button id="btn1" title="Distance Measurement" geomtype="LineString"></button>
-                    <button id="btn2" title="Area Measurement" geomtype="Polygon"></button>
-                    <button id="btn3" title="Clear Graphics"></button>
+                    <button id="btn1" title="Distance Measurement" geomtype="LineString"><i class="fas fa-ruler-combined"></i></button>
+                    <button id="btn2" title="Area Measurement" geomtype="Polygon"><i class="fas fa-map"></i></button>
+                    <button id="btn3" title="Clear Graphics"><i class="fas fa-eraser"></i></button>
+                
                 </div>
 
             </td>
