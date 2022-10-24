@@ -17,12 +17,14 @@
     <script src="dependencies/ol.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
 </head>
 
 <body onload="initialize_map();">
     <div>
         <td>
-            <div id="map" class="map" style="width: 100vw; height: 100vh">
+            <div id="map" class="map" >
                 <nav class="navbar" style="position:sticky; top:0; z-index:1100;">
                     <div class="dropdown pl-4">
                         <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,9 +48,6 @@
 
             </div>
 
-
-
-
             <div id="map" style="width: 50vw; height: 50vh;">
                 <div id="popup" class="ol-popup">
                     <a href="#" id="popup-closer" class="ol-popup-closer"></a>
@@ -57,30 +56,26 @@
             </div>
 
             <div id="map" style="width: 80vw; height: 100vh;">
-                <div class="card fixed-top" style="width: 24rem; top:400px;">
+                
                     <div id="infomation" class="infomation">
                         <div id="infomation_box" class="infomation_box">
                             Đây là thông tin
                         </div>
-                        <i class="bi bi-x" id="close_infomation"></i>
+                        <i class="fas fa-times close_infomation" id="close_infomation"></i>          
                     </div>
-                </div>
+                
                 
 
-                <div class="row fixed-bottom" style="position:sticky; ">
-                    <div class="col-6">
-                    </div>
-                    <div class="row">
-                        <ul class="list-group list-group-horizontal">
+                <div class="row col-1 fixed-bottom" style="position:sticky; ">   
+                    <div class="list-icon">
+                        <ul class="list-group list-group-horizontal flex-column justify-content">
                             <button class="bi bi-pencil-square" id="btn1" title="Distance Measurement" geomtype="LineString"></button>
-                            <button class="bi bi-map pl-3" id="btn2" title="Area Measurement" geomtype="Polygon"></button>
-                            <button class="bi bi-eraser pl-3" id="btn3" title="Clear Graphics"></button>
-                            <button class="bi bi-arrow-clockwise" id="btnRest"></button>
+                            <button class="bi bi-map " id="btn2" title="Area Measurement" geomtype="Polygon"></button>
+                            <button class="bi bi-eraser " id="btn3" title="Clear Graphics"></button>
+                            <button class="bi bi-arrow-clockwise"  id="btnRest" ></button>
                         </ul>
                     </div>
-                    <div class="col">
-
-                    </div>
+                    
 
                 </div>
 
