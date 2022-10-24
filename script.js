@@ -471,7 +471,11 @@ function initialize_map() {
             if (result == 'null')
               alert("không tìm thấy đối tượng");
             else
-              highLightObj(result);
+              console.log(result);
+              var listCityName = result.split('keysplit');
+              listCityName.pop();
+              console.log(listCityName);
+
           },
           error: function (req, status, error) {
             alert(req + " " + status + " " + error);

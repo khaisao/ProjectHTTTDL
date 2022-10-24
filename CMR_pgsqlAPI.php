@@ -61,7 +61,7 @@ if (isset($_POST['name'])) {
 
 function initDB()
 {
-    $paPDO = new PDO('pgsql:host=localhost;dbname=demo;port=5432', 'postgres', 'thao3456');
+    $paPDO = new PDO('pgsql:host=localhost;dbname=demo;port=5432', 'postgres', 'Khaiden666*');
     return $paPDO;
 }
 function query($paPDO, $paSQLStr)
@@ -389,15 +389,17 @@ function getInfoMarketsToAjax($paPDO, $paSRID, $paPoint)
 //tim kiem
 function seacherCity($paPDO, $paSRID, $name)
 {
-    
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from wards_from_2012 where rep_name like '$name'";
+    $mySQLStr = "SELECT * from wards_from_2012 where rep_name like '%$name%'";
     $result = query($paPDO, $mySQLStr);
-
     if ($result != null) {
         // Lặp kết quả
+        $kq = "";
         foreach ($result as $item) {
-            return $item['geo'];
+            $kq .=$item["rep_name"];
+            $kq.="keysplit";
+           
         }
+        return $kq ;
     } else
         return "null";
 }

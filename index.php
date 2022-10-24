@@ -42,7 +42,8 @@
                     </div>
                     <form class="form-inline">
                         <input id="ctiy" class="form-control" type="textinput" placeholder="Tìm kiếm" aria-label="Search">
-                        <button id="btnSeacher" class="btn btn-outline-dark my-2" type="submit"><i class="bi bi-search"></i></button>
+                       <i class="bi bi-search" id="btnSeacher"></i>
+                    
                     </form>
                 </nav>
 
