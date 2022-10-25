@@ -168,3 +168,13 @@
     border: none;
     
 }
+.mousePosition {
+    position: fixed;
+    right: 2px;
+    bottom: 2px;
+    border-radius: 10px;
+    padding: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    font-weight: bolder;
+  }

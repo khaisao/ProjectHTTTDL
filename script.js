@@ -234,6 +234,14 @@ let map = new OLMap('map', 10).map;
 let vector_layer = new VectorLayer('Temp Layer', map).layer
 map.addLayer(vector_layer);
 
+//add mouse postion
+var mousePosition = new ol.control.MousePosition({
+  className: 'mousePosition',
+  projection: 'EPSG:4326',
+  coordinateFormat: function (coordinate) { return ol.coordinate.format(coordinate, '{y} , {x}', 6); }
+});
+map.addControl(mousePosition);
+
 var value;
 /**
  * Create an overlay to anchor the popup to the map.
@@ -456,32 +464,66 @@ function initialize_map() {
   var buttonReset = document.getElementById("btnRest").addEventListener("click", () => {
     location.reload();
   })
+
   var button = document.getElementById("btnSeacher").addEventListener("click",
     () => {
+      console.log(ctiy.value);
       vectorLayer.setStyle(styleFunction);
       ctiy.value.length ?
         $.ajax({
           type: "POST",
-          url: "CMR_pgsqlAPI.php",
+          url: "fetch.php",
           data: {
-            name: ctiy.value
+            request: 'liveSearch',
+            searchTxt: ctiy.value
           },
+          dataType: 'json',
           success: function (result, status, erro) {
-
-            if (result == 'null')
-              alert("không tìm thấy đối tượng");
-            else
-              console.log(result);
-              var listCityName = result.split('keysplit');
-              listCityName.pop();
-              console.log(listCityName);
-
+            console.log(result);
+            createRows(result, "City");
           },
           error: function (req, status, error) {
             alert(req + " " + status + " " + error);
           }
         }) : alert("Nhập dữ liệu tìm kiếm")
     });
+  function createRows(data, layerName) {
+    var searchTable = document.createElement('table');
+    var rows = searchTable.getElementsByTagName("tr");
+
+    searchTable.remove();
+    var i = 0;
+    for (var key in data) {
+      var data2 = data[key];
+      console.log(data2["rep_name"]);
+      var tableRow = document.createElement('tr');
+      var td1 = document.createElement('td');
+      var td2 = document.createElement('td');
+      for (var key2 in data2) {
+        td2.innerHTML = data2[key2];
+        td1.innerHTML = data2["rep_name"];
+        td2.style.display='none';
+      }
+      tableRow.appendChild(td1);
+      tableRow.appendChild(td2);
+      searchTable.appendChild(tableRow);
+      i = i + 1;
+    }
+    for (i = 0; i < rows.length; i++) {
+      var currentRow = searchTable.rows[i];
+      var createClickHandler = function(row) {
+        return function() {
+          var cell = row.getElementsByTagName("td")[1];
+          var id = cell.innerHTML;
+          highLightObj(id);
+        };
+      };
+      currentRow.onclick = createClickHandler(currentRow);
+    }
+  
+    $("#search_div").html(searchTable);
+  }
+
 
   function createJsonObj(result) {
     var geojsonObject = '{' +
@@ -766,7 +808,7 @@ function initialize_map() {
 
 //Add Interaction to map depending on your selection
 let draw = null;
-let btnClick = (e) => {  
+let btnClick = (e) => {
   removeInteractions();
   let geomType = e.srcElement.attributes.geomtype.nodeValue;
   //Create interaction
@@ -775,9 +817,9 @@ let btnClick = (e) => {
 
 
 //Remove map interactions except default interactions
-let removeInteractions = () => {  
+let removeInteractions = () => {
   map.getInteractions().getArray().forEach((interaction, i) => {
-    if(i > 8) {
+    if (i > 8) {
       map.removeInteraction(interaction);
     }
   });
@@ -801,19 +843,20 @@ areaMeasure.onclick = btnClick;
 let clearGraphics = document.getElementById('btn3');
 clearGraphics.onclick = clear;
 
-function hide (elements) {
+function hide(elements) {
   elements = elements.length ? elements : [elements];
   for (var index = 0; index < elements.length; index++) {
     elements[index].style.display = 'none';
   }
 }
 
-function show (elements) {
+function show(elements) {
   elements = elements.length ? elements : [elements];
   for (var index = 0; index < elements.length; index++) {
     elements[index].style.display = 'block';
   }
 }
 
-document.getElementById("close_infomation").onclick = function() { hide(document.querySelectorAll('.infomation'));
+document.getElementById("close_infomation").onclick = function () {
+  hide(document.querySelectorAll('.infomation'));
 }

@@ -24,7 +24,7 @@
 <body onload="initialize_map();">
     <div>
         <td>
-            <div id="map" class="map" >
+            <div id="map" class="map">
                 <nav class="navbar" style="position:sticky; top:0; z-index:1100;">
                     <div class="dropdown pl-4">
                         <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,48 +42,43 @@
                     </div>
                     <form class="form-inline">
                         <input id="ctiy" class="form-control" type="textinput" placeholder="Tìm kiếm" aria-label="Search">
-                       <i class="bi bi-search" id="btnSeacher"></i>
-                    
+                        <i class="bi bi-search" id="btnSeacher"></i>
+
                     </form>
                 </nav>
 
             </div>
 
-            <div id="map" style="width: 50vw; height: 50vh;">
-                <div id="popup" class="ol-popup">
-                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                    <div id="popup-content"></div>
-                </div>
-            </div>
 
             <div id="map" style="width: 80vw; height: 100vh;">
-                
-                    <div id="infomation" class="infomation">
-                        <div id="infomation_box" class="infomation_box">
-                            Đây là thông tin
-                        </div>
-                        <i class="fas fa-times close_infomation" id="close_infomation"></i>          
-                    </div>
-                
-                
 
-                <div class="row col-1 fixed-bottom" style="position:sticky; ">   
+                <div id="infomation" class="infomation">
+                    <div id="infomation_box" class="infomation_box">
+                        Đây là thông tin
+                    </div>
+                    <i class="fas fa-times close_infomation" id="close_infomation"></i>
+                </div>
+
+
+
+                <div class="row col-1 fixed-bottom" style="position:sticky; ">
                     <div class="list-icon">
                         <ul class="list-group list-group-horizontal flex-column justify-content">
                             <button class="bi bi-pencil-square" id="btn1" title="Distance Measurement" geomtype="LineString"></button>
                             <button class="bi bi-map " id="btn2" title="Area Measurement" geomtype="Polygon"></button>
                             <button class="bi bi-eraser " id="btn3" title="Clear Graphics"></button>
-                            <button class="bi bi-arrow-clockwise"  id="btnRest" ></button>
+                            <button class="bi bi-arrow-clockwise" id="btnRest"></button>
                         </ul>
                     </div>
-                    
-
                 </div>
 
 
             </div>
     </div>
     </td>
+    <div class="search_div" id = "search_div">
+        asjlaslg
+    </div>
 
     <script src="script.js"></script>
 
