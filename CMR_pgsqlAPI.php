@@ -61,7 +61,7 @@ if (isset($_POST['name'])) {
 
 function initDB()
 {
-    $paPDO = new PDO('pgsql:host=localhost;dbname=demo;port=5432', 'postgres', 'Khaiden666*');
+    $paPDO = new PDO('pgsql:host=localhost;dbname=demo;port=5432', 'postgres', '1234');
     return $paPDO;
 }
 function query($paPDO, $paSQLStr)
@@ -131,8 +131,8 @@ function getRailsToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);   
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from roadway";
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from roadway where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
+    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from roadway_functional_classification";
+    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from roadway_functional_classification where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
     $result = query($paPDO, $mySQLStr);
 
     if ($result != null) {
@@ -198,7 +198,7 @@ function getatm_bankingToAjax($paPDO, $paSRID, $paPoint)
 }
 
 //highlight CHợ
-function getMarketsoAjax($paPDO, $paSRID, $paPoint)
+function getMarketsToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);   
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
@@ -245,8 +245,8 @@ function getInfoRailsToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from roadway";
-    $mySQLStr = "SELECT *  from roadway where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.5";
+    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from roadway_functional_classification";
+    $mySQLStr = "SELECT *  from roadway_functional_classification where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.5";
     $result = query($paPDO, $mySQLStr);
 
     if ($result != null) {
@@ -366,8 +366,8 @@ function getInfoMarketsToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from markets ";
-    $mySQLStr = "SELECT  gid,name,address,phone,day from markets  where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
+    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from farmers_market_locations ";
+    $mySQLStr = "SELECT  gid,name,address,phone,day from farmers_market_locations  where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
     $result = query($paPDO, $mySQLStr);
 
     if ($result != null) {
