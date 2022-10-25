@@ -43,23 +43,25 @@
                     <form class="form-inline">
                         <input id="ctiy" class="form-control" type="textinput" placeholder="Tìm kiếm" aria-label="Search">
                         <i class="bi bi-search" id="btnSeacher"></i>
-
+                        <div class="infomation1" id="search_box" style="display:none;">
+                            <div class="infomation_box">
+                                <div class="search_div" id="search_div">
+                                    kết quả
+                                </div>
+                            </div>
+                        </div>
+                        <div id="infomation" class="infomation">
+                            <div id="infomation_box" class="infomation_box">
+                                Đây là thông tin
+                            </div>
+                            <i class="fas fa-times close_infomation" id="close_infomation"></i>
+                        </div>
                     </form>
                 </nav>
-
             </div>
 
 
             <div id="map" style="width: 80vw; height: 100vh;">
-
-                <div id="infomation" class="infomation">
-                    <div id="infomation_box" class="infomation_box">
-                        Đây là thông tin
-                    </div>
-                    <i class="fas fa-times close_infomation" id="close_infomation"></i>
-                </div>
-
-
 
                 <div class="row col-1 fixed-bottom" style="position:sticky; ">
                     <div class="list-icon">
@@ -76,9 +78,7 @@
             </div>
     </div>
     </td>
-    <div class="search_div" id = "search_div">
-        asjlaslg
-    </div>
+
 
     <script src="script.js"></script>
 
