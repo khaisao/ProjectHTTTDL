@@ -481,6 +481,7 @@ function initialize_map() {
           success: function (result, status, erro) {
             console.log(result);
             createRows(result, "City");
+            document.getElementById("search_box").style.display="block";
           },
           error: function (req, status, error) {
             alert(req + " " + status + " " + error);
@@ -857,6 +858,12 @@ function show(elements) {
   }
 }
 
-document.getElementById("close_infomation").onclick = function () {
+// document.getElementById("close_infomation").onclick = function () {
+// //   hide(document.querySelectorAll('.infomation'));
+// }
+document.getElementById("close_infomation").onclick = function() { 
   hide(document.querySelectorAll('.infomation'));
+}
+document.getElementById("close_search").onclick = function() { 
+  hide(document.querySelectorAll('.search_infomation'));
 }

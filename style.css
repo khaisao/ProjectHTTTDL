@@ -8,7 +8,7 @@
 .map {
     border: 1px solid #000;
     width: 98.65vw; 
-    height: 87vh;
+    height: 86vh;
 }
 
 
@@ -107,7 +107,7 @@
     width: 30px;
     height: 90px;
 }
-#btn1 {
+.buton-item {
     margin: 1px;
     padding: 0;
     color: #fff;
@@ -121,52 +121,6 @@
     line-height: .4em;
     background-color: rgba(0,60,136,.5);
     border: none;
-}
-#btn2 {
-    margin: 1px;
-    padding: 0;
-    color: #fff;
-    font-size: 1.14em;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-    height: 1.555em;
-    width: 1.555em;
-    border-radius: 3px;
-    line-height: .4em;
-    background-color: rgba(0,60,136,.5);
-    border: none;
-}
-#btn3 {
-    margin: 1px;
-    padding: 0;
-    color: #fff;
-    font-size: 1.14em;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-    height: 1.555em;
-    width: 1.555em;
-    border-radius: 3px;
-    line-height: .4em;
-    background-color: rgba(0,60,136,.5);
-    border: none;
-}
-#btnRest {
-    margin: 1px;
-    padding: 0;
-    color: #fff;
-    font-size: 1.14em;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-    height: 1.555em;
-    width: 1.555em;
-    border-radius: 3px;
-    line-height: .4em;
-    background-color: rgba(0,60,136,.5);
-    border: none;
-    
 }
 .mousePosition {
     position: fixed;
@@ -178,3 +132,77 @@
     font-size: 12px;
     font-weight: bolder;
   }
+  .search_infomation {
+    width: 245px;
+    /* right: 50px; */
+    top: 45px;
+    min-width: 100px;
+    position: absolute;
+    margin-right: -18px;
+  }
+  .information_title {
+    display: block;
+  }
+  .information_title h6 {
+    margin-top: -19px;
+    margin-right: 2px;
+    font-weight: 750;
+  }
+  .search-navbar {
+    display: flex;
+    justify-content: space-around;
+  }
+  .option_information {
+    margin-left: 10px;
+  }
+  .option-form {
+    height: 36px;
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+    /* text-align: center; */
+  }
+  .btn-search {
+    display: block;
+    width: 38px;
+    height:38px;   
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow:#348ccb;
+    
+}
+.btn-search:hover {
+    border: 3px solid #348ccb;
+    /* transition: all 0.25s ease-in-out; */
+}
+#btnSeacher {
+    color: #000;
+}
+
+#dropdownMenuButton {
+    display: block;
+    width: 167px;
+    
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #90b0c1;
+    border-radius: 0.25rem;
+    box-shadow:#348ccb;
+    border-color: #d4c9c9;
+}
+#list-dropdwn {
+    /* background-color: rgba(11, 11, 11, 0.61); */
+    /* color:  #fff; */
+    left: 21px;
+}
+/* .text-down {
+    color:  #fff;
+} */
+.option-item {
+    border-radius: 3px;
+}
