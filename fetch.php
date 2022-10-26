@@ -4,7 +4,7 @@
 
 $host = "localhost";
 $user = "postgres";
-$password = "1234";
+$password = "Khaiden666*";
 $dbname = "demo";
 
 $con = pg_connect("host=$host dbname=$dbname user=$user password=$password");
@@ -31,7 +31,6 @@ if($request == 'liveSearch'){
      $response[] = array(
       "rep_name" => $value,
       "geom" => $geom
-
      );
   }
 

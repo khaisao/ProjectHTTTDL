@@ -22,63 +22,94 @@
 </head>
 
 <body onload="initialize_map();">
-    <div>
+    <div class="body">
         <td>
             <div id="map" class="map">
                 <nav class="navbar" style="position:sticky; top:0; z-index:1100;">
                     <div class="dropdown pl-4">
-                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn dropdown-toggle md-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Danh mục
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#"><input onclick="oncheckarg()" type="checkbox" id="arg" name="layer" value="arg"> Washington DC<br /></a>
+                        <div class="dropdown-menu" id="list-dropdwn" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item d-flex" href="#"><input onclick="oncheckarg()" type="checkbox" id="arg" name="layer" value="arg"> Washington DC <br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckrails();" type="checkbox" id="rails" name="layer" value="rails"> Đường phố <br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckstation();" type="checkbox" id="station" name="layer" value="station"> Trường Học <br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckmarkets();" type="checkbox" id="markets" name="layer" value="markets"> Chợ nông sản <br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckbank();" type="checkbox" id="bank" name="layer" value="bank"> Ngân Hàng <br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckhospitals();" type="checkbox" id="hospitals" name="layer" value="hospitals"> Bệnh viện <br /></a>
-                            <a class="dropdown-item" href="#"><input onclick="oncheckatm();" type="checkbox" id="atm" name="layer" value="atm"> ATM-BANKING <br /></a>
+                            <a class="dropdown-item" href="#"><input onclick="oncheckatm();" type="checkbox" id="atm" name="layer" value="atm"> ATM-Banking <br /></a>
                         </div>
                     </div>
-                    <form class="form-inline">
-                        <input id="ctiy" class="form-control" type="textinput" placeholder="Tìm kiếm" aria-label="Search">
-                        <i class="bi bi-search" id="btnSeacher"></i>
-                        <div class="infomation1" id="search_box" style="display:none;">
-                            <div class="infomation_box">
-                                <div class="search_div" id="search_div">
-                                    kết quả
+                    <div class="search-navbar">
+
+                        <form class="form-inline">
+                            <input id="ctiy" class="form-control" type="textinput" placeholder="Tìm kiếm . . ." aria-label="Search">
+                            <i class="bi bi-search" id="btnSeacher"></i>
+
+                            <!-- <button class="btn btn-outline-dark"><i class="bi bi-search" id="btnSeacher"></i></button> -->
+
+                            <div class="search_infomation" id="search_box" style="display:none;">
+                                <div class="infomation_box">
+                                    <div class="information_title">
+                                        <h6>KẾT QUẢ TÌM KIẾM...</h6>
+                                        <i class="fas fa-times close_infomation" id="close_search"></i>
+                                    </div>
+                                    <div class="search_div" id="search_div">kết quả</div>
                                 </div>
                             </div>
+                        </form>
+                        <div class="option_information">
+                            <select class="option-form form-select form-select-lg" aria-label="Default select example">
+                                <option class="option-item" selected>Vùng</option>
+                                <option value="1">Trường học</option>
+                                <option value="2">Chợ nông sản</option>
+                                <option value="3">Ngân Hàng</option>
+                                <option value="3">Bệnh viện</option>
+                                <option value="3">ATM-Banking </option>
+                                <option class="option-item" value="3">Đường phố</option>
+                            </select>
                         </div>
-                        <div id="infomation" class="infomation">
-                            <div id="infomation_box" class="infomation_box">
-                                Đây là thông tin
-                            </div>
-                            <i class="fas fa-times close_infomation" id="close_infomation"></i>
-                        </div>
-                    </form>
+                    </div>
+
+
                 </nav>
+
             </div>
 
-
+            <div id="map" style="width: 50vw; height: 50vh;">
+                <div id="popup" class="ol-popup">
+                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                    <div id="popup-content"></div>
+                </div>
+            </div>
             <div id="map" style="width: 80vw; height: 100vh;">
 
-                <div class="row col-1 fixed-bottom" style="position:sticky; ">
-                    <div class="list-icon">
-                        <ul class="list-group list-group-horizontal flex-column justify-content">
-                            <button class="bi bi-pencil-square" id="btn1" title="Distance Measurement" geomtype="LineString"></button>
-                            <button class="bi bi-map " id="btn2" title="Area Measurement" geomtype="Polygon"></button>
-                            <button class="bi bi-eraser " id="btn3" title="Clear Graphics"></button>
-                            <button class="bi bi-arrow-clockwise" id="btnRest"></button>
-                        </ul>
+                <div id="infomation" class="infomation">
+                    <div id="infomation_box" class="infomation_box">
+                        Đây là thông tin
                     </div>
+                    <i class="fas fa-times close_infomation" id="close_infomation"></i>
                 </div>
 
 
-            </div>
-    </div>
-    </td>
+                <div id="map" style="width: 80vw; height: 100vh;">
 
+                    <div class="row col-1 fixed-bottom" style="position:sticky; ">
+                        <div class="list-icon">
+                            <ul class="list-group list-group-horizontal flex-column justify-content">
+                                <button class="buton-item bi bi-pencil-square" id="btn1" title="Distance Measurement" geomtype="LineString"></button>
+                                <button class="buton-item bi bi-map " id="btn2" title="Area Measurement" geomtype="Polygon"></button>
+                                <button class="buton-item bi bi-eraser " id="btn3" title="Clear Graphics"></button>
+                                <button class="buton-item bi bi-arrow-clockwise" id="btnRest"></button>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </td>
+    </div>
 
     <script src="script.js"></script>
 

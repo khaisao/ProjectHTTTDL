@@ -8,8 +8,8 @@ var maxX = -76.9080963134766;
 var maxY = 38.9969940185547;
 var cenX = (minX + maxX) / 2;
 var cenY = (minY + maxY) / 2;
-var mapLat = cenY;
-var mapLng = cenX;
+var mapLat = 17.123123;
+var mapLng = 105.125125;
 
 class OLMap {
   //Constructor accepts html div id, zoom level and center coordinaes
@@ -230,7 +230,7 @@ varchkATM = document.getElementById('atm')
 // chợ nông sản
 varchkMarkets = document.getElementById('markets')
 
-let map = new OLMap('map', 10).map;
+let map = new OLMap('map', 5).map;
 let vector_layer = new VectorLayer('Temp Layer', map).layer
 map.addLayer(vector_layer);
 
@@ -241,23 +241,6 @@ var mousePosition = new ol.control.MousePosition({
   coordinateFormat: function (coordinate) { return ol.coordinate.format(coordinate, '{y} , {x}', 6); }
 });
 map.addControl(mousePosition);
-
-var value;
-/**
- * Create an overlay to anchor the popup to the map.
- */
-var overlay = new ol.Overlay( /** @type {olx.OverlayOptions} */({
-  element: container,
-  autoPan: true,
-  autoPanAnimation: {
-    duration: 250
-  }
-}));
-closer.onclick = function () {
-  overlay.setPosition(undefined);
-  closer.blur();
-  return false;
-};
 
 function handleOnCheck(id, layer) {
   if (document.getElementById(id).checked) {
@@ -272,11 +255,6 @@ function handleOnCheck(id, layer) {
   }
   console.log(" Vao ham nay");
 
-}
-
-function myFunction() {
-  var popup = document.getElementById("popup");
-  popup.classList.toggle("show");
 }
 
 function oncheckstation() {
@@ -324,7 +302,7 @@ function initialize_map() {
         'FORMAT': format,
         'VERSION': '1.1.1',
         STYLES: '',
-        LAYERS: 'wards_from_2012',
+        LAYERS: 'cite:gadm41_vnm_1',
       }
     })
 
@@ -858,7 +836,12 @@ function show(elements) {
   }
 }
 
-document.getElementById("close_infomation").onclick = function () {
+// document.getElementById("close_infomation").onclick = function () {
+// //   hide(document.querySelectorAll('.infomation'));
+// }
+document.getElementById("close_infomation").onclick = function() { 
   hide(document.querySelectorAll('.infomation'));
 }
-
+document.getElementById("close_search").onclick = function() { 
+  hide(document.querySelectorAll('.search_infomation'));
+}
