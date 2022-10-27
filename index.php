@@ -25,6 +25,9 @@
     <div class="body">
         <td>
             <div id="map" class="map">
+                <button id="btnCrosshair" title="Live Location">
+                    <i class="fa fa-crosshairs fa-2x"></i>
+                </button>
                 <nav class="navbar" style="position:sticky; top:0; z-index:1100;">
                     <a href="index.php" style="text-decoration: none; font-size: 20px; color:black;">
                         <img src="https://www.openstreetmap.org/assets/osm_logo-d4979005d8a03d67bbf051b4e7e6ef1b26c6a34a5cd1b65908e2947c360ca391.svg" alt="" style="width: 30px;">
@@ -35,20 +38,17 @@
                             Danh mục
                         </button>
                         <div class="dropdown-menu" id="list-dropdwn" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item d-flex" href="#"><input onclick="oncheckarg()" type="checkbox" id="arg" name="layer" value="arg"> Washington DC <br /></a>
+                            <a class="dropdown-item d-flex" href="#"><input onclick="oncheckarg()" type="checkbox" id="arg" name="layer" value="arg"> Việt Nam<br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckrails();" type="checkbox" id="rails" name="layer" value="rails"> Đường phố <br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckstation();" type="checkbox" id="station" name="layer" value="station"> Trường Học <br /></a>
-                            <a class="dropdown-item" href="#"><input onclick="oncheckmarkets();" type="checkbox" id="markets" name="layer" value="markets"> Chợ nông sản <br /></a>
-                            <a class="dropdown-item" href="#"><input onclick="oncheckbank();" type="checkbox" id="bank" name="layer" value="bank"> Ngân Hàng <br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckhospitals();" type="checkbox" id="hospitals" name="layer" value="hospitals"> Bệnh viện <br /></a>
-                            <a class="dropdown-item" href="#"><input onclick="oncheckatm();" type="checkbox" id="atm" name="layer" value="atm"> ATM-Banking <br /></a>
                         </div>
                     </div>
                     <div class="search-navbar">
 
                         <form class="form-inline">
                             <input id="ctiy" class="form-control" type="textinput" placeholder="Tìm kiếm . . ." aria-label="Search">
-                            <i class="bi bi-search ml-1" id="btnSeacher" ></i>
+                            <i class="bi bi-search ml-1" id="btnSeacher"></i>
 
                             <!-- <button class="btn btn-outline-dark"><i class="bi bi-search" id="btnSeacher"></i></button> -->
 
@@ -81,10 +81,6 @@
             </div>
 
             <div id="map" style="width: 50vw; height: 50vh;">
-                <div id="popup" class="ol-popup">
-                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                    <div id="popup-content"></div>
-                </div>
             </div>
             <div id="map" style="width: 80vw; height: 100vh;">
 

@@ -2,12 +2,7 @@
 Create and Render map on div with zoom and center
 */
 
-var minX = -77.120849609375;
-var minY = 38.7906188964844;
-var maxX = -76.9080963134766;
-var maxY = 38.9969940185547;
-var cenX = (minX + maxX) / 2;
-var cenY = (minY + maxY) / 2;
+
 var mapLat = 17.123123;
 var mapLng = 105.125125;
 
@@ -201,7 +196,8 @@ class Draw {
 var format = 'image/png';
 var layerARG_adm1;
 var layer_rails;
-var layer_station;
+//school
+var layer_school;
 //bankkkkkkkkkkkkkkkkkkkkk
 var layer_bank;
 //hospitallllllllllllllllllllllllllllllllllllll
@@ -230,7 +226,18 @@ varchkATM = document.getElementById('atm')
 // chợ nông sản
 varchkMarkets = document.getElementById('markets')
 
-let map = new OLMap('map', 5).map;
+layerBG = new ol.layer.Tile({
+  source: new ol.source.OSM({})
+});
+var viewMap = new ol.View({
+  center: ol.proj.fromLonLat([mapLng, mapLat]),
+  zoom: 5
+});
+map = new ol.Map({
+  target: "map",
+  layers: [layerBG],
+  view: viewMap,
+});
 let vector_layer = new VectorLayer('Temp Layer', map).layer
 map.addLayer(vector_layer);
 
@@ -245,7 +252,6 @@ map.addControl(mousePosition);
 function handleOnCheck(id, layer) {
   if (document.getElementById(id).checked) {
     value = document.getElementById(id).value;
-    // map.setLayerGroup(new ol.layer.Group())
     map.addLayer(layer)
     vectorLayer = new ol.layer.Vector({});
     map.addLayer(vectorLayer);
@@ -258,8 +264,7 @@ function handleOnCheck(id, layer) {
 }
 
 function oncheckstation() {
-  handleOnCheck('station', layer_station);
-
+  handleOnCheck('station', layer_school);
 }
 
 function oncheckrails() {
@@ -270,21 +275,10 @@ function oncheckrails() {
 function oncheckarg() {
   handleOnCheck('arg', layerARG_adm1);
 }
-//bankkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
-function oncheckbank() {
-  handleOnCheck('bank', layer_bank);
-}
+
 // bệnh viện
 function oncheckhospitals() {
   handleOnCheck('hospitals', layer_hospitals);
-}
-// ATM
-function oncheckatm() {
-  handleOnCheck('atm', layer_atm);
-}
-// CHợ 
-function oncheckmarkets() {
-  handleOnCheck('markets', layer_markets);
 }
 
 
@@ -316,13 +310,13 @@ function initialize_map() {
         'FORMAT': format,
         'VERSION': '1.1.1',
         STYLES: '',
-        LAYERS: 'roadway_functional_classification',
+        LAYERS: 'cite:gis_osm_roads_free_1',
       }
     })
 
   });
 
-  layer_station = new ol.layer.Image({
+  layer_school = new ol.layer.Image({
     source: new ol.source.ImageWMS({
       ratio: 1,
       url: 'http://localhost:8080/geoserver/cite/wms?',
@@ -330,26 +324,11 @@ function initialize_map() {
         'FORMAT': format,
         'VERSION': '1.1.1',
         STYLES: '',
-        LAYERS: 'schools',
+        LAYERS: 'cite:hotosm_vnm_north_education_facilities_points',
       }
     })
-
   });
-  ///////////////////////// bankkingggggggggggggggggggggggggggggggggg
-  layer_bank = new ol.layer.Image({
-    source: new ol.source.ImageWMS({
-      ratio: 1,
-      url: 'http://localhost:8080/geoserver/cite/wms?',
-      params: {
-        'FORMAT': format,
-        'VERSION': '1.1.1',
-        STYLES: '',
-        LAYERS: 'bank',
-      }
-    })
 
-  });
-  /////////////////////// bệnh viện
   layer_hospitals = new ol.layer.Image({
     source: new ol.source.ImageWMS({
       ratio: 1,
@@ -358,38 +337,9 @@ function initialize_map() {
         'FORMAT': format,
         'VERSION': '1.1.1',
         STYLES: '',
-        LAYERS: 'hospitals',
+        LAYERS: 'cite:hotosm_vnm_north_health_facilities_points',
       }
     })
-
-  });
-  ///////////////// cây ATM
-  layer_atm = new ol.layer.Image({
-    source: new ol.source.ImageWMS({
-      ratio: 1,
-      url: 'http://localhost:8080/geoserver/cite/wms?',
-      params: {
-        'FORMAT': format,
-        'VERSION': '1.1.1',
-        STYLES: '',
-        LAYERS: 'atm_banking',
-      }
-    })
-
-  });
-  /////////////////////// bệnh viện
-  layer_markets = new ol.layer.Image({
-    source: new ol.source.ImageWMS({
-      ratio: 1,
-      url: 'http://localhost:8080/geoserver/cite/wms?',
-      params: {
-        'FORMAT': format,
-        'VERSION': '1.1.1',
-        STYLES: '',
-        LAYERS: 'farmers_market_locations',
-      }
-    })
-
   });
 
 
@@ -459,7 +409,7 @@ function initialize_map() {
           success: function (result, status, erro) {
             console.log(result);
             createRows(result, "City");
-            document.getElementById("search_box").style.display="block";
+            document.getElementById("search_box").style.display = "block";
           },
           error: function (req, status, error) {
             alert(req + " " + status + " " + error);
@@ -469,19 +419,18 @@ function initialize_map() {
   function createRows(data, layerName) {
     var searchTable = document.createElement('table');
     var rows = searchTable.getElementsByTagName("tr");
-
     searchTable.remove();
     var i = 0;
     for (var key in data) {
       var data2 = data[key];
-      console.log(data2["rep_name"]);
+      console.log(data2["varname_1"]);
       var tableRow = document.createElement('tr');
       var td1 = document.createElement('td');
       var td2 = document.createElement('td');
       for (var key2 in data2) {
         td2.innerHTML = data2[key2];
-        td1.innerHTML = data2["rep_name"];
-        td2.style.display='none';
+        td1.innerHTML = data2["varname_1"];
+        td2.style.display = 'none';
       }
       tableRow.appendChild(td1);
       tableRow.appendChild(td2);
@@ -490,8 +439,8 @@ function initialize_map() {
     }
     for (i = 0; i < rows.length; i++) {
       var currentRow = searchTable.rows[i];
-      var createClickHandler = function(row) {
-        return function() {
+      var createClickHandler = function (row) {
+        return function () {
           var cell = row.getElementsByTagName("td")[1];
           var id = cell.innerHTML;
           highLightObj(id);
@@ -499,7 +448,7 @@ function initialize_map() {
       };
       currentRow.onclick = createClickHandler(currentRow);
     }
-  
+
     $("#search_div").html(searchTable);
   }
 
@@ -541,7 +490,6 @@ function initialize_map() {
     console.log(result);
     show(document.querySelectorAll('.infomation'))
     $("#infomation_box").html(result);
-
   }
 
   map.on('singleclick', function (evt) {
@@ -713,39 +661,6 @@ function initialize_map() {
         }
       });
     }
-    /// CHợ 
-    if (value == "markets") {
-      vectorLayer.setStyle(stylePoint);
-      $.ajax({
-        type: "POST",
-        url: "CMR_pgsqlAPI.php",
-        data: {
-          functionname: 'getInfoMarketsToAjax',
-          paPoint: myPoint
-        },
-        success: function (result, status, erro) {
-          displayObjInfo(result, evt.coordinate);
-        },
-        error: function (req, status, error) {
-          alert(req + " " + status + " " + error);
-        }
-      });
-
-      $.ajax({
-        type: "POST",
-        url: "CMR_pgsqlAPI.php",
-        data: {
-          functionname: 'getMarketsoAjax',
-          paPoint: myPoint
-        },
-        success: function (result, status, erro) {
-          highLightObj(result);
-        },
-        error: function (req, status, error) {
-          alert(req + " " + status + " " + error);
-        }
-      });
-    }
     //// bệnh viện
     if (value == "hospitals") {
       vectorLayer.setStyle(stylePoint);
@@ -781,7 +696,75 @@ function initialize_map() {
     }
 
   });
+
+
+  // live location
+  $("#btnCrosshair").on("click", function (event) {
+    $("#btnCrosshair").toggleClass("clicked");
+    if ($("#btnCrosshair").hasClass("clicked")) {
+      startAutolocate();
+    } else {
+      stopAutolocate();
+    }
+  });
 };
+
+//end onload
+
+//liveLocation
+var positionFeature = new ol.Feature();
+positionFeature.setStyle(
+    new ol.style.Style({
+        image: new ol.style.Circle({
+            radius: 6,
+            fill: new ol.style.Fill({
+                color: '#3399CC',
+            }),
+            stroke: new ol.style.Stroke({
+                color: '#fff',
+                width: 2,
+            }),
+        }),
+    })
+);
+var geolocation = new ol.Geolocation({
+  trackingOptions: {
+      enableHighAccuracy: true,
+  },
+  tracking: true,
+  projection: viewMap.getProjection()
+});
+var accuracyFeature = new ol.Feature();
+
+var currentPositionLayer = new ol.layer.Vector({
+    map: map,
+    source: new ol.source.Vector({
+        features: [accuracyFeature, positionFeature],
+    }),
+});
+function startAutolocate() {
+  var coordinates = geolocation.getPosition();
+  positionFeature.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
+  viewMap.setCenter(coordinates);
+  viewMap.setZoom(16);
+  accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
+  intervalAutolocate = setInterval(function () {
+      var coordinates = geolocation.getPosition();
+      var accuracy = geolocation.getAccuracyGeometry()
+      positionFeature.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
+      viewMap.getView().setCenter(coordinates);
+      viewMap.setZoom(16);
+      accuracyFeature.setGeometry(accuracy);
+  }, 10000);
+}
+
+function stopAutolocate() {
+  clearInterval(intervalAutolocate);
+  positionFeature.setGeometry(null);
+  accuracyFeature.setGeometry(null);
+}
+
+//endlivelocation
 
 
 
@@ -839,9 +822,9 @@ function show(elements) {
 // document.getElementById("close_infomation").onclick = function () {
 // //   hide(document.querySelectorAll('.infomation'));
 // }
-document.getElementById("close_infomation").onclick = function() { 
+document.getElementById("close_infomation").onclick = function () {
   hide(document.querySelectorAll('.infomation'));
 }
-document.getElementById("close_search").onclick = function() { 
+document.getElementById("close_search").onclick = function () {
   hide(document.querySelectorAll('.search_infomation'));
 }

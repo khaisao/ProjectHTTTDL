@@ -61,7 +61,7 @@ if (isset($_POST['name'])) {
 
 function initDB()
 {
-    $paPDO = new PDO('pgsql:host=localhost;dbname=demo;port=5432', 'postgres', 'postgres');
+    $paPDO = new PDO('pgsql:host=localhost;dbname=btl_1;port=5432', 'postgres', 'Khaiden666*');
     return $paPDO;
 }
 function query($paPDO, $paSQLStr)
@@ -99,7 +99,7 @@ function getGeoARGToAjax($paPDO, $paSRID, $paPoint)
 {
     
     $paPoint = str_replace(',', ' ', $paPoint);
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from \"wards_from_2012\" where ST_Within('SRID=".$paSRID.";".$paPoint."'::geometry,geom)";
+    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from \"gadm41_vnm_1\" where ST_Within('SRID=".$paSRID.";".$paPoint."'::geometry,geom)";
     $result = query($paPDO, $mySQLStr);
     if ($result != null) {
         // Lặp kết quả
@@ -114,8 +114,8 @@ function getStationToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from schools ";
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from schools where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
+    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from hotosm_vnm_north_education_facilities_points ";
+    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from hotosm_vnm_north_education_facilities_points where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
     $result = query($paPDO, $mySQLStr);
     if ($result != null) {
         // Lặp kết quả
@@ -220,7 +220,7 @@ function getInfoARGToAjax($paPDO, $paSRID, $paPoint)
    
     $paPoint = str_replace(',', ' ', $paPoint);
     // $mySQLStr = "SELECT gid, name_1, ST_Area(geom) dt, ST_Perimeter(geom) as cv from \"arg_adm1\" where ST_Within('SRID=".$paSRID.";".$paPoint."'::geometry,geom)";
-    $mySQLStr = "SELECT gid, rep_name, pop_2011_2 from \"wards_from_2012\" where ST_Within('SRID=".$paSRID.";".$paPoint."'::geometry,geom)";
+    $mySQLStr = "SELECT gid, name_1 from \"gadm41_vnm_1\" where ST_Within('SRID=".$paSRID.";".$paPoint."'::geometry,geom)";
     
     $result = query($paPDO, $mySQLStr);
 
@@ -229,9 +229,7 @@ function getInfoARGToAjax($paPDO, $paSRID, $paPoint)
         // Lặp kết quả
         foreach ($result as $item) {
             $resFin = $resFin . '<tr><td>Mã Vùng: ' . $item['gid'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td>Tên : ' . $item['rep_name'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td>Dân số: ' . $item['pop_2011_2'] . ' người ' .'</td></tr>';
-            // $resFin = $resFin . '<tr><td>Diện Tích: ' . $item['dientich'] . ' km2 '.'</td></tr>';
+            $resFin = $resFin . '<tr><td>Tên : ' . $item['name_1'] . '</td></tr>';
             break;
         }
         $resFin = $resFin . '</table>';
@@ -269,8 +267,8 @@ function getInfoStationToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from schools ";
-    $mySQLStr = "SELECT * from schools where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
+    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from hotosm_vnm_north_education_facilities_points ";
+    $mySQLStr = "SELECT * from hotosm_vnm_north_education_facilities_points where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
     $result = query($paPDO, $mySQLStr);
 
     if ($result != null) {
@@ -279,7 +277,6 @@ function getInfoStationToAjax($paPDO, $paSRID, $paPoint)
         foreach ($result as $item) {
             $resFin = $resFin . '<tr><td>G_id: ' . $item['gid'] . '</td></tr>';
             $resFin = $resFin . '<tr><td>Tên trường học: ' . $item['name'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td>Địa chỉ : ' . $item['address'] . '</td></tr>';
             break;
         }
         $resFin = $resFin . '</table>';

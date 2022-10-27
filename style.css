@@ -7,7 +7,7 @@
 
 .map {
     border: 1px solid #000;
-    width: 98.65vw; 
+    width: 98.65vw;
     height: 86vh;
 }
 
@@ -24,6 +24,7 @@
     left: -50px;
     min-width: 180px;
 }
+
 .ol-popup {
     position: absolute;
     background-color: white;
@@ -73,15 +74,16 @@
     content: "✖";
 }
 
-.infomation{
-  right: 30px;
-  bottom: 90px;
-  min-width: 100px;
-  position: absolute;
-  /* display: none; */
- 
+.infomation {
+    right: 30px;
+    bottom: 90px;
+    min-width: 100px;
+    position: absolute;
+    /* display: none; */
+
 }
-.infomation_box{
+
+.infomation_box {
     background: rgba(11, 11, 11, 0.61);
     color: #fff;
     padding-top: 30px;
@@ -90,23 +92,27 @@
     padding-bottom: 20px;
     border-radius: 3px;
 }
-.close_infomation{
+
+.close_infomation {
     position: absolute;
     margin-top: 2px;
     margin-right: 2px;
     top: 10px;
     right: 10px;
-    color:  #fff;
+    color: #fff;
 }
+
 .toolbar {
     margin-top: 10px;
 }
+
 .list-icon {
     /* margin-right:7px;  */
     margin-bottom: 300px;
     width: 30px;
     height: 90px;
 }
+
 .buton-item {
     margin: 1px;
     padding: 0;
@@ -119,65 +125,75 @@
     width: 1.555em;
     border-radius: 3px;
     line-height: .4em;
-    background-color: rgba(0,60,136,.5);
+    background-color: rgba(0, 60, 136, .5);
     border: none;
 }
+
 .mousePosition {
     position: fixed;
     right: 2px;
     bottom: 2px;
     border-radius: 10px;
     padding: 5px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 12px;
     font-weight: bolder;
-  }
-  .search_infomation {
+}
+
+.search_infomation {
     width: 245px;
     /* right: 50px; */
     top: 45px;
     min-width: 100px;
     position: absolute;
     margin-right: -18px;
-  }
-  .information_title {
+}
+
+.information_title {
     display: block;
-  }
-  .information_title h6 {
+}
+
+.information_title h6 {
     margin-top: -19px;
     margin-right: 2px;
     font-weight: 750;
-  }
-  .search-navbar {
+}
+
+.search-navbar {
     display: flex;
     justify-content: space-around;
-  }
-  .option_information {
+}
+
+.option_information {
     margin-left: 10px;
-  }
-  .option-form {
+}
+
+.option-form {
     height: 36px;
     border-radius: 3px;
     border: 1px solid #ced4da;
     /* text-align: center; */
-  }
-  .btn-search {
+}
+
+.btn-search {
     display: block;
     width: 38px;
-    height:38px;   
+    height: 38px;
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
-    box-shadow:#348ccb;
-    
+    box-shadow: #348ccb;
+
 }
+
 .btn-search:hover {
     border: 3px solid #348ccb;
     /* transition: all 0.25s ease-in-out; */
 }
+
 /* #btnSeacher {
     color: #000;
 } */
@@ -185,21 +201,23 @@
 #dropdownMenuButton {
     display: block;
     width: 167px;
-    
+
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #90b0c1;
     border-radius: 0.25rem;
-    box-shadow:#348ccb;
+    box-shadow: #348ccb;
     border-color: #d4c9c9;
 }
+
 #list-dropdwn {
     /* background-color: rgba(11, 11, 11, 0.61); */
     /* color:  #fff; */
     left: 21px;
 }
+
 /* .text-down {
     color:  #fff;
 } */
@@ -208,10 +226,11 @@
 }
 
 body {
-    overflow: hidden; /* Hide scrollbars */
-  }
+    overflow: hidden;
+    /* Hide scrollbars */
+}
 
-.dropdown{
+.dropdown {
     margin-right: 500px;
 }
 
@@ -227,4 +246,20 @@ body {
     border-left: none;
     cursor: pointer;
     border-radius: 3px;
+}
+
+#btnCrosshair {
+    z-index: 2000;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    width: 40px;
+    height: 40px;
+    right: 5px;
+    bottom: 15px;
+    border: none;
+    color: grey;
+}
+
+#btnCrosshair.clicked {
+    color: red;
 }

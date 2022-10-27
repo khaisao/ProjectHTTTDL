@@ -1,11 +1,10 @@
 <?php
 
-// include "http://10.96.4.34/TPLGIS/resources/custom/config.php";
 
 $host = "localhost";
 $user = "postgres";
-$password = "postgres";
-$dbname = "demo";
+$password = "Khaiden666*";
+$dbname = "btl_1";
 
 $con = pg_connect("host=$host dbname=$dbname user=$user password=$password");
 
@@ -22,14 +21,14 @@ if(isset($_POST['request'])){
 
 // Fetch all records
 if($request == 'liveSearch'){
-  $query = "SELECT rep_name, ST_AsGeoJson(geom) as geom from wards_from_2012 where rep_name like '%$searchTxt%'";
+  $query = "SELECT varname_1, ST_AsGeoJson(geom) as geom from gadm41_vnm_1 where varname_1 like '%$searchTxt%'";
   $result = pg_query($con, $query);
   $response = array();
   while ($row = pg_fetch_assoc($result) ){
-     $value = $row["rep_name"];
+     $value = $row["varname_1"];
      $geom = $row["geom"];
      $response[] = array(
-      "rep_name" => $value,
+      "varname_1" => $value,
       "geom" => $geom
      );
   }
