@@ -178,9 +178,9 @@
     border: 3px solid #348ccb;
     /* transition: all 0.25s ease-in-out; */
 }
-#btnSeacher {
+/* #btnSeacher {
     color: #000;
-}
+} */
 
 #dropdownMenuButton {
     display: block;
@@ -215,16 +215,16 @@ body {
     margin-right: 500px;
 }
 
-#btnSeacher{
+#btnSeacher {
     float: left;
     /* width: 20%; */
     padding: 10px;
     color: #fff;
     background-color: #7092FF;
     /* border-color: #7092FF; */
-    font-size: 12px;
+    font-size: 10.5px;
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 3px;
 }

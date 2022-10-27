@@ -26,7 +26,7 @@
         <td>
             <div id="map" class="map">
                 <nav class="navbar" style="position:sticky; top:0; z-index:1100;">
-                    <a href="index.php" style="text-decoration: none; font-size: 20px;">
+                    <a href="index.php" style="text-decoration: none; font-size: 20px; color:black;">
                         <img src="https://www.openstreetmap.org/assets/osm_logo-d4979005d8a03d67bbf051b4e7e6ef1b26c6a34a5cd1b65908e2947c360ca391.svg" alt="" style="width: 30px;">
                         VietNamStreetMap
                     </a>
