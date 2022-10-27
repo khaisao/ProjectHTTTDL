@@ -26,8 +26,12 @@
         <td>
             <div id="map" class="map">
                 <nav class="navbar" style="position:sticky; top:0; z-index:1100;">
-                    <div class="dropdown pl-4">
-                        <button class="btn dropdown-toggle md-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="index.php" style="text-decoration: none; font-size: 20px;">
+                        <img src="https://www.openstreetmap.org/assets/osm_logo-d4979005d8a03d67bbf051b4e7e6ef1b26c6a34a5cd1b65908e2947c360ca391.svg" alt="" style="width: 30px;">
+                        VietNamStreetMap
+                    </a>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle ml-4" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Danh mục
                         </button>
                         <div class="dropdown-menu" id="list-dropdwn" aria-labelledby="dropdownMenuButton">
@@ -44,7 +48,7 @@
 
                         <form class="form-inline">
                             <input id="ctiy" class="form-control" type="textinput" placeholder="Tìm kiếm . . ." aria-label="Search">
-                            <i class="bi bi-search" id="btnSeacher"></i>
+                            <i class="bi bi-search ml-1" id="btnSeacher" ></i>
 
                             <!-- <button class="btn btn-outline-dark"><i class="bi bi-search" id="btnSeacher"></i></button> -->
 

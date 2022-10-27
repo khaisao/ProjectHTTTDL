@@ -206,3 +206,25 @@
 .option-item {
     border-radius: 3px;
 }
+
+body {
+    overflow: hidden; /* Hide scrollbars */
+  }
+
+.dropdown{
+    margin-right: 500px;
+}
+
+#btnSeacher{
+    float: left;
+    /* width: 20%; */
+    padding: 10px;
+    color: #fff;
+    background-color: #7092FF;
+    /* border-color: #7092FF; */
+    font-size: 12px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
