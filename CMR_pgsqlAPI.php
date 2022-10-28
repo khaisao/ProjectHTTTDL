@@ -16,39 +16,18 @@ if (isset($_POST['functionname'])) {
         $aResult = getInfoRailsToAjax($paPDO, $paSRID, $paPoint);
     else if ($functionname == 'getInfoStationToAjax')
         $aResult = getInfoStationToAjax($paPDO, $paSRID, $paPoint);
-    //bank
-    else if ($functionname == 'getInfoBankToAjax')
-        $aResult = getInfoBankToAjax($paPDO, $paSRID, $paPoint);
     // bệnh viện
     else if ($functionname == 'getInfoHospitalsToAjax')
-        $aResult = getInfoHospitalsToAjax($paPDO, $paSRID, $paPoint);
-    // atm_banking
-    else if ($functionname == 'getInfoatm_bankingToAjax')
-        $aResult = getInfoatm_bankingToAjax($paPDO, $paSRID, $paPoint);
-    //markets
-    else if ($functionname == 'getInfoMarketsToAjax')
-        $aResult = getInfoMarketsToAjax($paPDO, $paSRID, $paPoint);
-    
+        $aResult = getInfoHospitalsToAjax($paPDO, $paSRID, $paPoint);    
     else if ($functionname == 'getStationToAjax')
         $aResult = getStationToAjax($paPDO, $paSRID, $paPoint);
     else if ($functionname == 'getRailsToAjax')
         $aResult = getRailsToAjax($paPDO, $paSRID, $paPoint);
     else if ($functionname == 'getRailsToAjax')
         $aResult = getRailsToAjax($paPDO, $paSRID, $paPoint);
-    //bank
-    else if ($functionname == 'getBankToAjax')
-        $aResult = getBankToAjax($paPDO, $paSRID, $paPoint);
     //bệnh viện
     else if ($functionname == 'getHospitalsToAjax')
         $aResult = getHospitalsToAjax($paPDO, $paSRID, $paPoint);
-    //atm_banking
-    else if ($functionname == 'getatm_bankingToAjax')
-        $aResult = getatm_bankingToAjax($paPDO, $paSRID, $paPoint);
-    //Markets
-    else if ($functionname == 'getMarketsToAjax')
-        $aResult = getMarketsToAjax($paPDO, $paSRID, $paPoint);
-
-
     echo $aResult;
 
     closeDB($paPDO);
@@ -61,7 +40,8 @@ if (isset($_POST['name'])) {
 
 function initDB()
 {
-    $paPDO = new PDO('pgsql:host=localhost;dbname=btl_1;port=5432', 'postgres', 'postgres');
+    //$paPDO = new PDO('pgsql:host=localhost;dbname=btl_1;port=5432', 'postgres', 'postgres');
+    $paPDO = new PDO('pgsql:host=localhost;dbname=demo;port=5432', 'postgres', '1234');
     return $paPDO;
 }
 function query($paPDO, $paSQLStr)
@@ -131,26 +111,8 @@ function getRailsToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);   
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from roadway_functional_classification";
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from roadway_functional_classification where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
-    $result = query($paPDO, $mySQLStr);
-
-    if ($result != null) {
-        // Lặp kết quả
-        foreach ($result as $item) {
-            return $item['geo'];
-        }
-    } else
-        return "null";
-}
-// Hightlight Banking
-
-function getBankToAjax($paPDO, $paSRID, $paPoint)
-{
-    $paPoint = str_replace(',', ' ', $paPoint);   
-    $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from bank";
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from bank where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
+    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from gis_osm_roads_free_1 ";
+    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from gis_osm_roads_free_1 where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
     $result = query($paPDO, $mySQLStr);
 
     if ($result != null) {
@@ -166,44 +128,8 @@ function getHospitalsToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);   
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from hospitals";
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from hospitals where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
-    $result = query($paPDO, $mySQLStr);
-
-    if ($result != null) {
-        // Lặp kết quả
-        foreach ($result as $item) {
-            return $item['geo'];
-        }
-    } else
-        return "null";
-}
-
-//highlight cây atm_banking BANKING
-function getatm_bankingToAjax($paPDO, $paSRID, $paPoint)
-{
-    $paPoint = str_replace(',', ' ', $paPoint);   
-    $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from atm_banking";
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from atm_banking where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
-    $result = query($paPDO, $mySQLStr);
-
-    if ($result != null) {
-        // Lặp kết quả
-        foreach ($result as $item) {
-            return $item['geo'];
-        }
-    } else
-        return "null";
-}
-
-//highlight CHợ
-function getMarketsToAjax($paPDO, $paSRID, $paPoint)
-{
-    $paPoint = str_replace(',', ' ', $paPoint);   
-    $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from atm_banking";
-    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from atm_banking where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
+    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from hotosm_vnm_north_health_facilities_points";
+    $mySQLStr = "SELECT ST_AsGeoJson(geom) as geo from hotosm_vnm_north_health_facilities_points where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
     $result = query($paPDO, $mySQLStr);
 
     if ($result != null) {
@@ -243,8 +169,8 @@ function getInfoRailsToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from roadway_functional_classification";
-    $mySQLStr = "SELECT *  from roadway_functional_classification where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.5";
+    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from gis_osm_roads_free_1 ";
+    $mySQLStr = "SELECT *  from gis_osm_roads_free_1 where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.5";
     $result = query($paPDO, $mySQLStr);
 
     if ($result != null) {
@@ -252,8 +178,8 @@ function getInfoRailsToAjax($paPDO, $paSRID, $paPoint)
         // Lặp kết quả
         foreach ($result as $item) {
             $resFin = $resFin . '<tr><td>G_ID: ' . $item['gid'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td>Tên đường : ' . $item['routename'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td>Loại đường : ' . $item['streettype'] . '</td></tr>';
+            $resFin = $resFin . '<tr><td>Tên đường : ' . $item['name'] . '</td></tr>';
+            $resFin = $resFin . '<tr><td>Loại đường : ' . $item['fclass'] . '</td></tr>';
             break;
         }
         $resFin = $resFin . '</table>';
@@ -285,37 +211,13 @@ function getInfoStationToAjax($paPDO, $paSRID, $paPoint)
         return "null 1";
 }
 
-////////////////////////////////abnkkkkkkkkkkkkkkkkkkk
-function getInfoBankToAjax($paPDO, $paSRID, $paPoint)
-{
-    $paPoint = str_replace(',', ' ', $paPoint);
-    $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from bank ";
-    $mySQLStr = "SELECT gid,name,address,zipcode from bank where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
-    $result = query($paPDO, $mySQLStr);
-
-    if ($result != null) {
-        $resFin = '<table>';
-        // Lặp kết quả
-        foreach ($result as $item) {
-            $resFin = $resFin . '<tr><td>ID: ' . $item['gid'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td>Tên ngân hàng: ' . $item['name'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td>Địa chỉ : ' . $item['address'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td>ZIP CODE : ' . $item['zipcode'] . '</td></tr>';
-            break;
-        }
-        $resFin = $resFin . '</table>';
-        return $resFin;
-    } else
-        return "null";
-}
 ////////////////////////////////        bệnh viện
 function getInfoHospitalsToAjax($paPDO, $paSRID, $paPoint)
 {
     $paPoint = str_replace(',', ' ', $paPoint);
     $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from hospitals ";
-    $mySQLStr = "SELECT * from hospitals where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
+    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from hotosm_vnm_north_health_facilities_points ";
+    $mySQLStr = "SELECT * from hotosm_vnm_north_health_facilities_points where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
     $result = query($paPDO, $mySQLStr);
 
     if ($result != null) {
@@ -324,58 +226,7 @@ function getInfoHospitalsToAjax($paPDO, $paSRID, $paPoint)
         foreach ($result as $item) {
             $resFin = $resFin . '<tr><td> ID: ' . $item['gid'] . '</td></tr>';
             $resFin = $resFin . '<tr><td> Tên bệnh viện: ' . $item['name'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td> Địa chỉ : ' . $item['address'] . '</td></tr>';
-            break;
-        }
-        $resFin = $resFin . '</table>';
-        return $resFin;
-    } else
-        return "null";
-}
-
-////////////////////////////////  atm_banking banking
-function getInfoatm_bankingToAjax($paPDO, $paSRID, $paPoint)
-{
-    $paPoint = str_replace(',', ' ', $paPoint);
-    $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from atm_banking ";
-    $mySQLStr = "SELECT  gid,name,address,zipcode from atm_banking  where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
-    $result = query($paPDO, $mySQLStr);
-
-    if ($result != null) {
-        $resFin = '<table>';
-        // Lặp kết quả
-        foreach ($result as $item) {
-            $resFin = $resFin . '<tr><td> ID: ' . $item['gid'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td> Tên atm_banking: ' . $item['name'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td> Địa chỉ : ' . $item['address'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td> ZIPCODE : ' . $item['zipcode'] . '</td></tr>';
-            break;
-        }
-        $resFin = $resFin . '</table>';
-        return $resFin;
-    } else
-        return "null";
-}
-
-//////////////////////////////// Chợ
-function getInfoMarketsToAjax($paPDO, $paSRID, $paPoint)
-{
-    $paPoint = str_replace(',', ' ', $paPoint);
-    $strDistance = "ST_Distance('" . $paPoint . "',ST_AsText(geom))";
-    $strMinDistance = "SELECT min(ST_Distance('" . $paPoint . "',ST_AsText(geom))) from farmers_market_locations ";
-    $mySQLStr = "SELECT  gid,name,address,phone,day from farmers_market_locations  where " . $strDistance . " = (" . $strMinDistance . ") and " . $strDistance . " < 0.1";
-    $result = query($paPDO, $mySQLStr);
-
-    if ($result != null) {
-        $resFin = '<table>';
-        // Lặp kết quả
-        foreach ($result as $item) {
-            $resFin = $resFin . '<tr><td> ID: ' . $item['gid'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td> Name: ' . $item['name'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td> Address : ' . $item['address'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td> Phone : ' . $item['phone'] . '</td></tr>';
-            $resFin = $resFin . '<tr><td> Open : ' . $item['day'] . '</td></tr>';
+            $resFin = $resFin . '<tr><td> Loại: ' . $item['amenity'] . '</td></tr>';
             break;
         }
         $resFin = $resFin . '</table>';
