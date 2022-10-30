@@ -61,7 +61,7 @@ if (isset($_POST['name'])) {
 
 function initDB()
 {
-    $paPDO = new PDO('pgsql:host=localhost;dbname=btl_1;port=5432', 'postgres', 'postgres');
+    $paPDO = new PDO('pgsql:host=localhost;dbname=btl_1;port=5432', 'postgres', 'Khaiden666*');
     return $paPDO;
 }
 function query($paPDO, $paSQLStr)
