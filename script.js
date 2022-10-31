@@ -217,14 +217,9 @@ var ctiy = document.getElementById("ctiy");
 var chkARG = document.getElementById("arg");
 var chkStation = document.getElementById("station");
 var chkRails = document.getElementById("rails");
-//bank
-var chkBank = document.getElementById("bank")
 //bệnh viện
 varchkHospitals = document.getElementById("hospitals")
-// atm
-varchkATM = document.getElementById('atm')
-// chợ nông sản
-varchkMarkets = document.getElementById('markets')
+
 
 layerBG = new ol.layer.Tile({
   source: new ol.source.OSM({})
@@ -595,72 +590,7 @@ function initialize_map() {
         }
       });
     }
-    /// bankingggggggggggggggg
-    if (value == "bank") {
-      vectorLayer.setStyle(stylePoint);
-      $.ajax({
-        type: "POST",
-        url: "CMR_pgsqlAPI.php",
-        data: {
-          functionname: 'getInfoBankToAjax',
-          paPoint: myPoint
-        },
-        success: function (result, status, erro) {
-          displayObjInfo(result, evt.coordinate);
-        },
-        error: function (req, status, error) {
-          alert(req + " " + status + " " + error);
-        }
-      });
-
-      $.ajax({
-        type: "POST",
-        url: "CMR_pgsqlAPI.php",
-        data: {
-          functionname: 'getBankToAjax',
-          paPoint: myPoint
-        },
-        success: function (result, status, erro) {
-          highLightObj(result);
-        },
-        error: function (req, status, error) {
-          alert(req + " " + status + " " + error);
-        }
-      });
-    }
-    /// ATMMMMMMMMMMMMMMMMMM
-    if (value == "atm") {
-      vectorLayer.setStyle(stylePoint);
-      $.ajax({
-        type: "POST",
-        url: "CMR_pgsqlAPI.php",
-        data: {
-          functionname: 'getInfoATMToAjax',
-          paPoint: myPoint
-        },
-        success: function (result, status, erro) {
-          displayObjInfo(result, evt.coordinate);
-        },
-        error: function (req, status, error) {
-          alert(req + " " + status + " " + error);
-        }
-      });
-
-      $.ajax({
-        type: "POST",
-        url: "CMR_pgsqlAPI.php",
-        data: {
-          functionname: 'getATMToAjax',
-          paPoint: myPoint
-        },
-        success: function (result, status, erro) {
-          highLightObj(result);
-        },
-        error: function (req, status, error) {
-          alert(req + " " + status + " " + error);
-        }
-      });
-    }
+    
     //// bệnh viện
     if (value == "hospitals") {
       vectorLayer.setStyle(stylePoint);

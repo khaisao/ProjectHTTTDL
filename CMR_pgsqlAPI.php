@@ -32,11 +32,7 @@ if (isset($_POST['functionname'])) {
 
     closeDB($paPDO);
 }
-if (isset($_POST['name'])) {
-    $name = $_POST['name'];
-    $aResult = seacherCity($paPDO, $paSRID, $name);
-    echo $aResult;
-}
+
 
 function initDB()
 {
@@ -233,20 +229,4 @@ function getInfoHospitalsToAjax($paPDO, $paSRID, $paPoint)
     } else
         return "null";
 }
-//tim kiem
-function seacherCity($paPDO, $paSRID, $name)
-{
-    $mySQLStr = "SELECT * from wards_from_2012 where rep_name like '%$name%'";
-    $result = query($paPDO, $mySQLStr);
-    if ($result != null) {
-        // Lặp kết quả
-        $kq = "";
-        foreach ($result as $item) {
-            $kq .=$item["rep_name"];
-            $kq.="keysplit";
-           
-        }
-        return $kq ;
-    } else
-        return "null";
-}
+

@@ -62,17 +62,7 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="option_information">
-                            <select class="option-form form-select form-select-lg" aria-label="Default select example">
-                                <option class="option-item" selected>Vùng</option>
-                                <option value="1">Trường học</option>
-                                <option value="2">Chợ nông sản</option>
-                                <option value="3">Ngân Hàng</option>
-                                <option value="3">Bệnh viện</option>
-                                <option value="3">ATM-Banking </option>
-                                <option class="option-item" value="3">Đường phố</option>
-                            </select>
-                        </div>
+                        
                     </div>
 
 
