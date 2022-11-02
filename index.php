@@ -38,7 +38,7 @@
                             Danh mục
                         </button>
                         <div class="dropdown-menu" id="list-dropdwn" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item d-flex" href="#"><input onclick="oncheckarg()" type="checkbox" id="arg" name="layer" value="arg"> Việt Nam<br /></a>
+                            <a class="dropdown-item d-flex" href="#"><input onclick="oncheckarg()" type="checkbox" id="arg" name="layer" value="arg">  Việt Nam<br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckrails();" type="checkbox" id="rails" name="layer" value="rails"> Đường phố <br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckstation();" type="checkbox" id="station" name="layer" value="station"> Trường Học <br /></a>
                             <a class="dropdown-item" href="#"><input onclick="oncheckhospitals();" type="checkbox" id="hospitals" name="layer" value="hospitals"> Bệnh viện <br /></a>
@@ -76,7 +76,6 @@
 
                 <div id="infomation" class="infomation">
                     <div id="infomation_box" class="infomation_box">
-                        Đây là thông tin
                     </div>
                     <i class="fas fa-times close_infomation" id="close_infomation"></i>
                 </div>
